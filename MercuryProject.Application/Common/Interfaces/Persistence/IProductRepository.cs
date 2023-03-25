@@ -10,6 +10,8 @@ namespace MercuryProject.Application.Common.Interfaces.Persistence
     public interface IProductRepository
     {
         Task<Domain.Product.Product?> GetProductByName(string name);
+
+        Task<IEnumerable<Domain.Product.Product>> GetAllProductsAsync();
         void Add(Domain.Product.Product product);
     }
 }

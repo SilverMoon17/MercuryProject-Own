@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercuryProject.Infrastructure.Migrations
 {
     [DbContext(typeof(MercuryProjectDbContext))]
-    [Migration("20230323193155_InitialMigration")]
+    [Migration("20230325082123_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -39,17 +39,15 @@ namespace MercuryProject.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IconUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<double>("Price")
                         .HasColumnType("float");

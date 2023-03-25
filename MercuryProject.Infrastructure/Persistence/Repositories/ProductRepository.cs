@@ -23,6 +23,11 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
             return await _dbContext.Set<Product>().FirstOrDefaultAsync(u => u.Name == name);
         }
 
+        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        {
+            return await _dbContext.Set<Product>().ToListAsync();
+        }
+
         public void Add(Product product)
         {
             _dbContext.AddAsync(product);

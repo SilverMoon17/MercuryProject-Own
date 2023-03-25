@@ -3,10 +3,12 @@ using MapsterMapper;
 using MediatR;
 using MercuryProject.Application.Authentication.Commands.Register;
 using MercuryProject.Application.Authentication.Queries.Login;
+using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Application.Product.Commands.Create;
 using MercuryProject.Application.Product.Common;
 using MercuryProject.Contracts.Authentication;
 using MercuryProject.Contracts.Product;
+using MercuryProject.Domain.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,14 +18,22 @@ namespace MercuryProject.API.Controllers
     [Authorize(Roles = "User")]
     public class ProductController : ApiController
     {
-        private readonly IMapper _mapper;
-        private readonly ISender _mediator;
+        private readonly IProductRepository _productRepository;
 
 
-        public ProductController(IMapper mapper, ISender sender)
+        public ProductController(IProductRepository productRepository)
         {
-            _mapper = mapper;
-            _mediator = sender;
+            _productRepository = productRepository;
+        }
+
+        [HttpGet("/getAllProducts")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts()
+        {
+            var result = await _productRepository.GetAllProductsAsync();
+
+
+            return Ok(result);
         }
     }
 }

@@ -12,7 +12,9 @@ namespace MercuryProject.Domain.Common.Errors
         public static class Product
         {
             public static Error DuplicateProductName =>
-                Error.Conflict(code: "Product.DuplicateProductName", description: "This name is already in use.");
+                Error.Conflict(code: "Product.DuplicateProductName", description: "This product name is already in use.");
+            public static Error TooLongDescription =>
+                Error.Conflict(code: "Product.TooLongDescription", description: "Description too long (only 500 characters available)");
         }
     }
 }

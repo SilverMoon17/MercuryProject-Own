@@ -33,8 +33,8 @@ namespace MercuryProject.Infrastructure.Persistence.Configurations
                 .HasConversion(id => id.Value,
                     value => UserId.Create(value));
 
-            builder.Property(p => p.Name).HasMaxLength(50);
-            builder.Property(p => p.Description).HasMaxLength(300);
+            builder.Property(p => p.Name).HasMaxLength(150);
+            builder.Property(p => p.Description);
             builder.Property(p => p.Stock);
             builder.Property(p => p.Price);
             builder.Property(p => p.Category);

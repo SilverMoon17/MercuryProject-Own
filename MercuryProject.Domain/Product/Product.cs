@@ -17,7 +17,7 @@ namespace MercuryProject.Domain.Product
         public int Stock { get; }
         public double Price { get; }
         public string Category { get; }
-        public string IconUrl { get; }
+        public string? IconUrl { get; }
         public DateTime CreatedDateTime { get; }
         public DateTime UpdatedDateTime { get; }
         public Product(ProductId productId, UserId userId, string name, string description, double price, int stock, string category, string iconUrl, DateTime createdDateTime, DateTime updatedDateTime) : base(productId)
