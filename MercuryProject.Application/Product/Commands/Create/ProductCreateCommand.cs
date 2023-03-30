@@ -18,5 +18,5 @@ namespace MercuryProject.Application.Product.Commands.Create
         int Stock,
         string Category,
         string IconUrl
-    ) : IRequest<ErrorOr<ProductCreateResult>>;
+    ) : IRequest<ErrorOr<ProductResult>>;
 }

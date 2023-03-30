@@ -10,6 +10,7 @@ using MercuryProject.Domain.Common.Errors;
 using MercuryProject.Domain.User;
 using MercuryProject.Domain.User.ValueObjects;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace MercuryProject.Infrastructure.Persistence.Repositories
@@ -35,7 +36,7 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
             return await _dbContext.Set<User>().FirstOrDefaultAsync(u => u.Username == username);
         }
 
-        public async Task<ErrorOr<bool>> AddAdminByUsername(string username)
+        public async Task<ErrorOr<bool>> AddAdminByUsername([FromBody] string username)
         {
             var user = await _dbContext.Set<User>().FirstOrDefaultAsync(u => u.Username == username);
             if (user != null)

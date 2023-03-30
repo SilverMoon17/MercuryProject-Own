@@ -10,7 +10,7 @@ using MercuryProject.Domain.User.ValueObjects;
 
 namespace MercuryProject.Application.Product.Commands.Create
 {
-    internal class ProductCreateCommandHandler : IRequestHandler<ProductCreateCommand, ErrorOr<ProductCreateResult>>
+    internal class ProductCreateCommandHandler : IRequestHandler<ProductCreateCommand, ErrorOr<ProductResult>>
     {
         private readonly IProductRepository _productRepository;
         private readonly IUserRepository _userRepository;
@@ -21,7 +21,7 @@ namespace MercuryProject.Application.Product.Commands.Create
             _userRepository = userRepository;
         }
 
-        public async Task<ErrorOr<ProductCreateResult>> Handle(ProductCreateCommand request, CancellationToken cancellationToken)
+        public async Task<ErrorOr<ProductResult>> Handle(ProductCreateCommand request, CancellationToken cancellationToken)
         {
             await Task.CompletedTask;
 
@@ -44,7 +44,7 @@ namespace MercuryProject.Application.Product.Commands.Create
 
             _productRepository.Add(product);
 
-            return new ProductCreateResult(product);
+            return new ProductResult(product);
         }
     }
 }

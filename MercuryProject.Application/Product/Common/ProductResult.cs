@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MercuryProject.Application.Product.Common
 {
-    public record ProductCreateResult
+    public record ProductResult
     (
         Domain.Product.Product Product
     );

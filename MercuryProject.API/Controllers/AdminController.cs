@@ -5,6 +5,7 @@ using MercuryProject.Application.Authentication.Commands.Register;
 using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Application.Product.Commands.Create;
 using MercuryProject.Application.Product.Common;
+using MercuryProject.Contracts.Admin;
 using MercuryProject.Contracts.Authentication;
 using MercuryProject.Contracts.Product;
 using Microsoft.AspNetCore.Authorization;
@@ -30,22 +31,21 @@ namespace MercuryProject.API.Controllers
         }
 
         [HttpPatch]
-        [Route("add")]
-        public async Task<IActionResult> AddAdmin(string username)
+        public async Task<IActionResult> AddAdmin(AddAdminRequest request)
         {
-            ErrorOr<bool> result= await _userRepository.AddAdminByUsername(username);
+            ErrorOr<bool> result= await _userRepository.AddAdminByUsername(request.Username);
 
             return result.Match(result => Ok(),
                 errors => Problem(errors));
         }
 
-        [HttpPost("createProduct")]
+        [HttpPost("product")]
         public async Task<IActionResult> CreateProduct(ProductCreateRequest request)
         {
             var command = _mapper.Map<ProductCreateCommand>(request);
-            ErrorOr<ProductCreateResult> result = await _mediator.Send(command);
+            ErrorOr<ProductResult> result = await _mediator.Send(command);
 
-            return result.Match(result => Ok(_mapper.Map<ProductCreateResponse>(result)),
+            return result.Match(result => Ok(_mapper.Map<ProductResponse>(result)),
                 errors => Problem(errors));
         }
 

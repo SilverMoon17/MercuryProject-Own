@@ -19,7 +19,7 @@ namespace MercuryProject.Domain.Common.Errors
             public static Error PasswordConfirmation =>
                 Error.Conflict(code: "User.PasswordConfirmation", description: "Password and confirmation password must be the same");
             public static Error UserNotFoundError =>
-                Error.Conflict(code: "User.UserNotFound", description: "User not found");
+                Error.NotFound(code: "User.UserNotFound", description: "User not found");
         }
     }
 }

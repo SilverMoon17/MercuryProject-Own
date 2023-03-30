@@ -8,7 +8,7 @@ namespace MercuryProject.API.Common.Mapping
     {
         public void Register(TypeAdapterConfig config)
         {
-            config.NewConfig<ProductCreateResult, ProductCreateResponse>().Map(dest => dest.Id, src => src.Product.Id.Value)
+            config.NewConfig<ProductResult, ProductResponse>().Map(dest => dest.Id, src => src.Product.Id.Value)
                 .Map(dest => dest, src => src.Product);
         }
     }
