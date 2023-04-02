@@ -2,14 +2,11 @@
 using ErrorOr;
 using MapsterMapper;
 using MediatR;
-using MercuryProject.Application.Authentication.Commands.Register;
-using MercuryProject.Application.Authentication.Queries.Login;
 using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Application.Product.Commands.Create;
 using MercuryProject.Application.Product.Commands.Delete;
 using MercuryProject.Application.Product.Common;
 using MercuryProject.Application.Product.Queries.GetProductById;
-using MercuryProject.Contracts.Authentication;
 using MercuryProject.Contracts.Product;
 using MercuryProject.Domain.Product;
 using Microsoft.AspNetCore.Authorization;
@@ -30,6 +27,17 @@ namespace MercuryProject.API.Controllers
             _productRepository = productRepository;
             _mapper = mapper;
             _mediator = mediator;
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> CreateProduct(ProductCreateRequest request)
+        {
+            var command = _mapper.Map<ProductCreateCommand>(request);
+            ErrorOr<ProductResult> result = await _mediator.Send(command);
+
+            return result.Match(result => Ok(_mapper.Map<ProductResponse>(result)),
+                errors => Problem(errors));
         }
 
         [HttpGet("/getAllProducts")]

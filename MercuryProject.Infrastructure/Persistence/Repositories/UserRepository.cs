@@ -26,6 +26,11 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
             _contextAccessor = contextAccessor;
         }
 
+        public async Task<User?> GetUserById(UserId id)
+        {
+            return await _dbContext.Set<User>().FirstOrDefaultAsync(u => u.Id == id);
+        }
+
         public async Task<User> GetUserByEmail(string email)
         {
             return await _dbContext.Set<User>().FirstOrDefaultAsync(u => u.Email == email);

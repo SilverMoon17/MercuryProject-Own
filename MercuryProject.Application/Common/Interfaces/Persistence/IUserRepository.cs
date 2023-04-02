@@ -11,6 +11,8 @@ namespace MercuryProject.Application.Common.Interfaces.Persistence
 {
     public interface IUserRepository
     {
+        Task<User?> GetUserById(UserId id);
+
         Task<User>?GetUserByEmail(string email);
         Task<User>?GetUserByUsername(string username);
         Task<ErrorOr<bool>> AddAdminByUsername(string username);

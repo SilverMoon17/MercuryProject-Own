@@ -37,6 +37,7 @@ namespace MercuryProject.Infrastructure
             services.AddDbContext<MercuryProjectDbContext>(options => options.UseSqlServer(builderConfiguration["ConnectionStrings:DefaultConnection"]));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IIdeaRepository, IdeaRepository>();
             return services;
         }
 

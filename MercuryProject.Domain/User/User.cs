@@ -10,6 +10,8 @@ namespace MercuryProject.Domain.User
 {
     public sealed class User : AggregateRoot<UserId>
     {
+        private readonly List<Idea.Idea> _ideas = new();
+
         public string Role { get; set; } = "User";
         public string Username { get; set; } = null!;
         public string FirstName { get; set; } = null!;
@@ -17,11 +19,12 @@ namespace MercuryProject.Domain.User
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public string ConfirmedPassword { get; set; } = null!;
+        public IReadOnlyList<Idea.Idea> Ideas => _ideas.AsReadOnly();
         public DateTime CreatedDateTime { get; set; }
         public DateTime UpdatedDateTime { get; set; }
 
 
-        private User
+        public User
         (UserId userId, string role, string username, string firstName, string lastName, string email,
             string password, string confirmedPassword
         , DateTime createdDateTime, DateTime updatedDateTime) : base(userId)

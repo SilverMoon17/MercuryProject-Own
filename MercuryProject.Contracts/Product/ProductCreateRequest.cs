@@ -6,5 +6,11 @@ using System.Threading.Tasks;
 
 namespace MercuryProject.Contracts.Product
 {
-    public record ProductCreateRequest(string Name, string Description, double Price, int Stock, string Category, string IconUrl);
+    public record ProductCreateRequest(
+        string Name,
+        string Description,
+        double Price,
+        int Stock,
+        string Category,
+        string IconUrl);
 }

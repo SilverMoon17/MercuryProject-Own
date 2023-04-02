@@ -38,17 +38,5 @@ namespace MercuryProject.API.Controllers
             return result.Match(result => Ok(),
                 errors => Problem(errors));
         }
-
-        [HttpPost("product")]
-        public async Task<IActionResult> CreateProduct(ProductCreateRequest request)
-        {
-            var command = _mapper.Map<ProductCreateCommand>(request);
-            ErrorOr<ProductResult> result = await _mediator.Send(command);
-
-            return result.Match(result => Ok(_mapper.Map<ProductResponse>(result)),
-                errors => Problem(errors));
-        }
-
-
     }
 }
