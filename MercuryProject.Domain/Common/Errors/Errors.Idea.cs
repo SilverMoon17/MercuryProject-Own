@@ -17,6 +17,8 @@ namespace MercuryProject.Domain.Common.Errors
                 Error.NotFound(code: "Idea.NotFound", description: "Idea with this id doesn't exists");
             public static Error CorrectId =>
                 Error.Conflict(code: "Idea.CorrectId", description: "Specify the correct format of id");
+            public static Error Status =>
+                Error.Conflict(code: "Idea.AlreadyStatus", description: "You cannot change the status of an idea that already has that status");
         }
     }
 }

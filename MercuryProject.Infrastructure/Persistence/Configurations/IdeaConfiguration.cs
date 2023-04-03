@@ -25,7 +25,7 @@ namespace MercuryProject.Infrastructure.Persistence.Configurations
 
             builder.Property(i => i.Id)
                 .ValueGeneratedNever()
-                .HasConversion(id => id.Value, value => IdeaId.CreateUnique());
+                .HasConversion(id => id.Value, value => IdeaId.Create(value));
 
             builder.HasOne(i => i.User)
                 .WithMany(u => u.Ideas)

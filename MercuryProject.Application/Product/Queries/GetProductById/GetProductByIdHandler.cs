@@ -18,10 +18,9 @@ namespace MercuryProject.Application.Product.Queries.GetProductById
 
         public async Task<ErrorOr<ProductResult>> Handle(GetProductByIdQuery query, CancellationToken cancellationToken)
         {
-            Guid productGuid;
-            if (Guid.TryParse(query.Id, out productGuid))
+            if (Guid.TryParse(query.Id, out var productGuid))
             {
-                var product = await _productRepository.GetProductById(query.Id);
+                var product = await _productRepository.GetProductById(productGuid);
 
                 if (product is null)
                 {
@@ -31,7 +30,7 @@ namespace MercuryProject.Application.Product.Queries.GetProductById
                 return new ProductResult(product);
             }
 
-             return Errors.Product.CorrectId;
+            return Errors.Product.CorrectId;
         }
     }
 }

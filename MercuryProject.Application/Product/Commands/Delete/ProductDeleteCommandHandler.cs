@@ -8,6 +8,7 @@ using ErrorOr;
 using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Application.Product.Common;
 using MercuryProject.Domain.Common.Errors;
+using System.Collections;
 
 namespace MercuryProject.Application.Product.Commands.Delete
 {
@@ -23,16 +24,23 @@ namespace MercuryProject.Application.Product.Commands.Delete
         public async Task<ErrorOr<bool>> Handle(ProductDeleteCommand request, CancellationToken cancellationToken)
         {
             await Task.CompletedTask;
-            Domain.Product.Product? product = await _productRepository.GetProductById(request.Id);
 
-            if (product is null)
+            if (Guid.TryParse(request.Id, out var productGuid))
             {
-                return Errors.Product.ProductNotFound;
+                Domain.Product.Product? product = await _productRepository.GetProductById(productGuid);
+
+                if (product is null)
+                {
+                    return Errors.Product.ProductNotFound;
+                }
+
+                bool status = await _productRepository.DeleteProduct(product);
+
+                return status;
             }
 
-            bool status = await  _productRepository.DeleteProduct(product);
+            return Errors.Product.CorrectId;
 
-            return status;
 
         }
     }

@@ -24,9 +24,9 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
             return await _dbContext.Set<Product>().FirstOrDefaultAsync(u => u.Name == name);
         }
 
-        public async Task<Product?> GetProductById(string id)
+        public async Task<Product?> GetProductById(Guid id)
         {
-            var productId = ProductId.Create(new Guid(id));
+            var productId = ProductId.Create(id);
             var product = await _dbContext.Set<Product>().FirstOrDefaultAsync(p => p.Id == productId);
 
             return product;
@@ -54,8 +54,8 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
 
         public void Add(Product product)
         {
-            _dbContext.AddAsync(product);
-            _dbContext.SaveChangesAsync();
+            _dbContext.Add(product);
+            _dbContext.SaveChanges();
         }
     }
 }

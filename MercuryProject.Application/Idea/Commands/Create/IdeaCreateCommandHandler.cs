@@ -7,14 +7,15 @@ using MediatR;
 using ErrorOr;
 using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Application.Idea.Common;
+using MercuryProject.Application.Idea.Create;
 using MercuryProject.Domain.Common.Errors;
 using MercuryProject.Domain.User.ValueObjects;
 using MercuryProject.Domain.Idea;
 
 
-namespace MercuryProject.Application.Idea.Create
+namespace MercuryProject.Application.Idea.Commands.Create
 {
-    internal class IdeaCreateCommandHandler : IRequestHandler<IdeaCreateCommand, ErrorOr<IdeaResult>>
+    public class IdeaCreateCommandHandler : IRequestHandler<IdeaCreateCommand, ErrorOr<IdeaResult>>
     {
         private readonly IIdeaRepository _ideaRepository;
         private readonly IUserRepository _userRepository;

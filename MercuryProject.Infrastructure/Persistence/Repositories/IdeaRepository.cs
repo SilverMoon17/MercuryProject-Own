@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using MercuryProject.Application.Common.Interfaces.Persistence;
+using MercuryProject.Domain.Enums;
 using MercuryProject.Domain.Idea;
 using MercuryProject.Domain.Idea.ValueObjects;
 using MercuryProject.Domain.Product;
@@ -26,9 +28,9 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
             return await _dbContext.Set<Idea>().FirstOrDefaultAsync(u => u.Title == title);
         }
 
-        public async Task<Idea?> GetIdeaById(string id)
+        public async Task<Idea?> GetIdeaById(Guid id)
         {
-            var ideaId = IdeaId.Create(new Guid(id));
+            var ideaId = IdeaId.Create(id);
             var idea = await _dbContext.Set<Idea>().FirstOrDefaultAsync(p => p.Id == ideaId);
 
             return idea;
@@ -51,13 +53,35 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<Idea>> GetAllIdeasAsync()
         {
+            var ideas = await _dbContext.Set<Idea>().ToListAsync();
             return await _dbContext.Set<Idea>().ToListAsync();
+        }
+
+        public async Task<IEnumerable<Idea>> GetAllWhereAsync(Expression<Func<Idea, bool>> predicate)
+        {
+            return await _dbContext.Set<Idea>().Where(predicate).ToListAsync();
+        }
+
+        public void UpdateIdeaCollectedMoney(Idea idea, double donate)
+        {
+            idea.Collected += donate;
+            idea.UpdatedDateTime = DateTime.Now;
+            _dbContext.Update(idea);
+            _dbContext.SaveChanges();
+        }
+
+        public void UpdateIdeaStatus(Idea idea, IdeaStatus status)
+        {
+            idea.Status = status;
+            idea.UpdatedDateTime = DateTime.Now;
+            _dbContext.Update(idea);
+            _dbContext.SaveChanges();
         }
 
         public void Add(Idea idea)
         {
-            _dbContext.AddAsync(idea);
-            _dbContext.SaveChangesAsync();
+            _dbContext.Add(idea);
+            _dbContext.SaveChanges();
         }
     }
 }

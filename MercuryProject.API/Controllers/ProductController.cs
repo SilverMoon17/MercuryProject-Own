@@ -40,14 +40,14 @@ namespace MercuryProject.API.Controllers
                 errors => Problem(errors));
         }
 
-        [HttpGet("/getAllProducts")]
+        [HttpGet("getAllProducts")]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts()
         {
             var result = await _productRepository.GetAllProductsAsync();
             return Ok(result);
         }
-        [HttpGet("/product/{id}")]
+        [HttpGet("{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> GetProductById(string id)
         {
@@ -57,9 +57,9 @@ namespace MercuryProject.API.Controllers
                 errors => Problem(errors));
         }
 
-        [HttpDelete("/product/{id}")]
+        [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteProduct( string id)
+        public async Task<IActionResult> DeleteProduct(string id)
         {
             var command = new ProductDeleteCommand(id);
             var result = await _mediator.Send(command);
