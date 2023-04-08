@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using ErrorOr;
 using MediatR;
 
-namespace MercuryProject.Application.Idea.Queries
+namespace MercuryProject.Application.Idea.Queries.GetAllIdeas
 {
     public record GetAllIdeasQuery
         (Expression<Func<Domain.Idea.Idea, bool>> Predicate) : IRequest<IEnumerable<Domain.Idea.Idea>>;

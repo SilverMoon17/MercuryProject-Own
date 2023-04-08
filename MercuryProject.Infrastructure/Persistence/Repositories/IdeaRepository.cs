@@ -20,7 +20,7 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
 
         public IdeaRepository(MercuryProjectDbContext dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext = dbContext; 
         }
 
         public async Task<Idea?> GetIdeaByTitle(string title)

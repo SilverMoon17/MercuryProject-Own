@@ -8,7 +8,7 @@ using MediatR;
 using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Domain.Enums;
 
-namespace MercuryProject.Application.Idea.Queries
+namespace MercuryProject.Application.Idea.Queries.GetAllIdeas
 {
     public class GetAllIdeasQueryHandler : IRequestHandler<GetAllIdeasQuery, IEnumerable<Domain.Idea.Idea>>
     {

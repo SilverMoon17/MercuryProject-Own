@@ -11,8 +11,12 @@ using MercuryProject.Application.Idea.Commands.Donate;
 using MercuryProject.Application.Idea.Common;
 using MercuryProject.Application.Idea.Create;
 using MercuryProject.Application.Idea.Queries;
+using MercuryProject.Application.Idea.Queries.GetAllIdeas;
+using MercuryProject.Application.Idea.Queries.GetIdeaById;
 using MercuryProject.Application.Product.Commands.Delete;
+using MercuryProject.Application.Product.Queries.GetProductById;
 using MercuryProject.Contracts.Idea;
+using MercuryProject.Contracts.Product;
 using MercuryProject.Domain.Enums;
 using MercuryProject.Domain.Idea;
 using MercuryProject.Domain.Idea.Dto;
@@ -105,6 +109,15 @@ namespace MercuryProject.API.Controllers
             var command = new IdeaDeleteCommand(id);
             var result = await _mediator.Send(command);
             return result.Match(result => Ok("Deleted"),
+                errors => Problem(errors));
+        }
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetIdeaById(string id)
+        {
+            var query = new GetIdeaByIdQuery(id);
+            var result = await _mediator.Send(query);
+            return result.Match(result => Ok(_mapper.Map<IdeaResponse>(result)),
                 errors => Problem(errors));
         }
     }
