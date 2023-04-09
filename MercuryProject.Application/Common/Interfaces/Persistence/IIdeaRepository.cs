@@ -17,7 +17,7 @@ namespace MercuryProject.Application.Common.Interfaces.Persistence
         Task<bool> DeleteIdea(Domain.Idea.Idea idea);
         Task<IEnumerable<Domain.Idea.Idea>> GetAllIdeasAsync();
         Task<IEnumerable<Domain.Idea.Idea>> GetAllWhereAsync(Expression<Func<Domain.Idea.Idea, bool>> predicate);
-        public void UpdateIdeaCollectedMoney(Domain.Idea.Idea idea, double donate);
+        public void UpdateIdeaCollectedMoney(Domain.Idea.Idea idea, decimal donate);
         public void UpdateIdeaStatus(Domain.Idea.Idea idea, IdeaStatus status);
         void Add(Domain.Idea.Idea idea);
     }

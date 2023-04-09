@@ -9,7 +9,7 @@ namespace MercuryProject.Contracts.Product
     public record ProductCreateRequest(
         string Name,
         string Description,
-        double Price,
+        decimal Price,
         int Stock,
         string Category,
         string IconUrl);

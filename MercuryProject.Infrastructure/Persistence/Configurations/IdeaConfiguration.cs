@@ -41,6 +41,8 @@ namespace MercuryProject.Infrastructure.Persistence.Configurations
                     v => v.Split(';', StringSplitOptions.RemoveEmptyEntries).ToList())
                 .Metadata
                 .SetValueComparer(valueComparer);
+            builder.Property(i => i.Goal).HasPrecision(18, 2);
+            builder.Property(i => i.Collected).HasPrecision(18, 2);
         }
     }
 }

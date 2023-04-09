@@ -14,7 +14,7 @@ namespace MercuryProject.Application.Product.Commands.Create
     (
         string Name,
         string Description,
-        double Price,
+        decimal Price,
         int Stock,
         string Category,
         string IconUrl

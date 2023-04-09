@@ -16,8 +16,8 @@ namespace MercuryProject.Domain.Idea.Dto
         public string Title { get; set; }
         public string Description { get; set; }
         public IdeaStatus Status { get; set; }
-        public double Goal { get; set; }
-        public double Collected { get; set; }
+        public decimal Goal { get; set; }
+        public decimal Collected { get; set; }
         public string Category { get; set; }
         public IReadOnlyList<string> IdeaImageUrls { get; set; }
         public DateTime CreatedDateTime { get; set; }

@@ -62,7 +62,7 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
             return await _dbContext.Set<Idea>().Where(predicate).ToListAsync();
         }
 
-        public void UpdateIdeaCollectedMoney(Idea idea, double donate)
+        public void UpdateIdeaCollectedMoney(Idea idea, decimal donate)
         {
             idea.Collected += donate;
             idea.UpdatedDateTime = DateTime.Now;

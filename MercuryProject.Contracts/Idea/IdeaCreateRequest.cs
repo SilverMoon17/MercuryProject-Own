@@ -11,7 +11,7 @@ namespace MercuryProject.Contracts.Idea
     (
         string Title,
         string Description,
-        double Goal,
+        decimal Goal,
         string Category,
         List<string> IconUrls
     );

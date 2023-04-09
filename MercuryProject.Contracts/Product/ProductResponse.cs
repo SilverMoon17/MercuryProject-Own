@@ -13,7 +13,7 @@ namespace MercuryProject.Contracts.Product
         UserId UserId,
         string Name,
         string Description,
-        double Price,
+        decimal Price,
         int Stock,
         string Category,
         string IconUrl,

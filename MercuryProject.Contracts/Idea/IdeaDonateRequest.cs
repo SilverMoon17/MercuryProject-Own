@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace MercuryProject.Contracts.Idea
 {
-    public record IdeaDonateRequest(string Id, double Donate);
+    public record IdeaDonateRequest(string Id, decimal Donate);
 }

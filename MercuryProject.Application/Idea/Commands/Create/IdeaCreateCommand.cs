@@ -13,7 +13,7 @@ namespace MercuryProject.Application.Idea.Create
     (
         string Title,
         string Description,
-        double Goal,
+        decimal Goal,
         string Category,
         List<string> IconUrls
     ) : IRequest<ErrorOr<IdeaResult>>;

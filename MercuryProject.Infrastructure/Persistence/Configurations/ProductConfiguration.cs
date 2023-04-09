@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,7 @@ namespace MercuryProject.Infrastructure.Persistence.Configurations
             builder.Property(p => p.Name).HasMaxLength(150);
             builder.Property(p => p.Description);
             builder.Property(p => p.Stock);
-            builder.Property(p => p.Price);
+            builder.Property(p => p.Price).HasPrecision(18,2);
             builder.Property(p => p.Category);
             builder.Property(p => p.IconUrl);
             builder.Property(p => p.CreatedDateTime);

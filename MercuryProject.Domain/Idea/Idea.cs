@@ -21,14 +21,14 @@ namespace MercuryProject.Domain.Idea
         public string Title { get; set; }
         public string Description { get; set; }
         public IdeaStatus Status { get; set; }
-        public double Goal { get; set; }
-        public double Collected {get; set; }
+        public decimal Goal { get; set; }
+        public decimal Collected {get; set; }
         public string Category { get; set; }
         public IReadOnlyList<string> IdeaImageUrls => _ideaImageUrls.AsReadOnly();
         public DateTime CreatedDateTime { get; set; }
         public DateTime UpdatedDateTime { get; set; }
 
-        public Idea(IdeaId ideaId, UserId ownerId, string title, string description, double goal, string category, List<string> ideaImageUrls, DateTime createdDateTime, DateTime updatedDateTime, double collected = 0, IdeaStatus ideaStatus = IdeaStatus.Review) : base(ideaId)
+        public Idea(IdeaId ideaId, UserId ownerId, string title, string description, decimal goal, string category, List<string> ideaImageUrls, DateTime createdDateTime, DateTime updatedDateTime, decimal collected = 0, IdeaStatus ideaStatus = IdeaStatus.Review) : base(ideaId)
         {
             OwnerId = ownerId;
             Title = title;
@@ -43,7 +43,7 @@ namespace MercuryProject.Domain.Idea
         }
 
         public static Idea Create
-            (UserId ownerId, string title, string description, double goal, string category, List<string> ideaImageUrls)
+            (UserId ownerId, string title, string description, decimal goal, string category, List<string> ideaImageUrls)
         {
             return new(IdeaId.CreateUnique(), ownerId, title, description, goal, category, ideaImageUrls, DateTime.UtcNow,
                 DateTime.UtcNow);
