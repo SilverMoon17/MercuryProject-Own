@@ -1,15 +1,7 @@
 ﻿using MercuryProject.Domain.Common.Models;
-using MercuryProject.Domain.Product.ValueObjects;
-using MercuryProject.Domain.User.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MercuryProject.Domain.Idea.ValueObjects;
-using System.Collections;
-using System.Security.Cryptography.X509Certificates;
 using MercuryProject.Domain.Enums;
+using MercuryProject.Domain.Idea.ValueObjects;
+using MercuryProject.Domain.User.ValueObjects;
 
 namespace MercuryProject.Domain.Idea
 {
@@ -22,7 +14,7 @@ namespace MercuryProject.Domain.Idea
         public string Description { get; set; }
         public IdeaStatus Status { get; set; }
         public decimal Goal { get; set; }
-        public decimal Collected {get; set; }
+        public decimal Collected { get; set; }
         public string Category { get; set; }
         public IReadOnlyList<string> IdeaImageUrls => _ideaImageUrls.AsReadOnly();
         public DateTime CreatedDateTime { get; set; }

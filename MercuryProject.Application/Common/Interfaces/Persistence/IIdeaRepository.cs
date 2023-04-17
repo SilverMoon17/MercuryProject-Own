@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MercuryProject.Domain.Enums;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using MercuryProject.Domain.Common.Errors;
-using MercuryProject.Domain.Enums;
-using MercuryProject.Domain.Idea;
 
 namespace MercuryProject.Application.Common.Interfaces.Persistence
 {

@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using ErrorOr;
+﻿using ErrorOr;
 using MapsterMapper;
 using MediatR;
 using MercuryProject.Application.Common.Interfaces.Persistence;

@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
 using MediatR;
-using ErrorOr;
 using MercuryProject.Application.Common.Interfaces.Persistence;
-using MercuryProject.Application.Product.Common;
 using MercuryProject.Domain.Common.Errors;
-using System.Collections;
 
 namespace MercuryProject.Application.Product.Commands.Delete
 {
-    public  class ProductDeleteCommandHandler : IRequestHandler<ProductDeleteCommand ,ErrorOr<bool>>
+    public class ProductDeleteCommandHandler : IRequestHandler<ProductDeleteCommand, ErrorOr<bool>>
     {
         private readonly IProductRepository _productRepository;
 

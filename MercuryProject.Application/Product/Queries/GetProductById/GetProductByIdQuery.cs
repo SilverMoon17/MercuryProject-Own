@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
 using MediatR;
-using ErrorOr;
 using MercuryProject.Application.Product.Common;
 
 namespace MercuryProject.Application.Product.Queries.GetProductById

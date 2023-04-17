@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ErrorOr;
+﻿using ErrorOr;
 using MediatR;
 using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Application.Idea.Commands.Approve;
-using MercuryProject.Application.Idea.Common;
-using MercuryProject.Application.Product.Common;
 using MercuryProject.Domain.Common.Errors;
-using MercuryProject.Domain.Enums;
 
 namespace MercuryProject.Application.Idea.Approve
 {

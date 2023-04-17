@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using MercuryProject.Application.Common.Interfaces.Persistence;
+﻿using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Domain.Enums;
 using MercuryProject.Domain.Idea;
 using MercuryProject.Domain.Idea.ValueObjects;
-using MercuryProject.Domain.Product;
-using MercuryProject.Domain.Product.ValueObjects;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace MercuryProject.Infrastructure.Persistence.Repositories
 {
@@ -20,7 +13,7 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
 
         public IdeaRepository(MercuryProjectDbContext dbContext)
         {
-            _dbContext = dbContext; 
+            _dbContext = dbContext;
         }
 
         public async Task<Idea?> GetIdeaByTitle(string title)
@@ -45,7 +38,7 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
 
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

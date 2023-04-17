@@ -1,9 +1,4 @@
 ﻿using MercuryProject.Domain.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MercuryProject.Domain.Idea.ValueObjects
 {

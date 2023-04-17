@@ -1,5 +1,4 @@
-﻿using MercuryProject.Domain.Idea.ValueObjects;
-using MercuryProject.Domain.User;
+﻿using MercuryProject.Domain.User;
 using MercuryProject.Domain.User.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

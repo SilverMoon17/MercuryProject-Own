@@ -1,11 +1,8 @@
-﻿using MediatR;
-using ErrorOr;
+﻿using ErrorOr;
+using MediatR;
 using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Application.Product.Common;
 using MercuryProject.Domain.Common.Errors;
-using System.Web;
-using MercuryProject.Application.Common.Interfaces.Services;
-using MercuryProject.Domain.User.ValueObjects;
 
 
 namespace MercuryProject.Application.Product.Commands.Create
@@ -30,7 +27,7 @@ namespace MercuryProject.Application.Product.Commands.Create
                 return Errors.Product.DuplicateProductName;
             }
 
-            var userId = UserId.Create(Guid.Parse(_userRepository.GetUserId()));
+            var userId = _userRepository.GetUserId();
 
             var product = Domain.Product.Product.Create(
                 userId,

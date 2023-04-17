@@ -22,6 +22,33 @@ namespace MercuryProject.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("MercuryProject.Domain.CartItem.CartItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ShoppingCartId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ShoppingCartId");
+
+                    b.ToTable("CartItems", (string)null);
+                });
+
             modelBuilder.Entity("MercuryProject.Domain.Idea.Idea", b =>
                 {
                     b.Property<Guid>("Id")
@@ -70,6 +97,34 @@ namespace MercuryProject.Infrastructure.Migrations
                     b.ToTable("Ideas", (string)null);
                 });
 
+            modelBuilder.Entity("MercuryProject.Domain.Order.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("ShoppingCartId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShoppingCartId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders", (string)null);
+                });
+
             modelBuilder.Entity("MercuryProject.Domain.Product.Product", b =>
                 {
                     b.Property<Guid>("Id")
@@ -110,6 +165,34 @@ namespace MercuryProject.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products", (string)null);
+                });
+
+            modelBuilder.Entity("MercuryProject.Domain.ShoppingCart.ShoppingCart", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CartState")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Total")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("UpdatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("MercuryProject.Domain.User.User", b =>
@@ -159,6 +242,25 @@ namespace MercuryProject.Infrastructure.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
+            modelBuilder.Entity("MercuryProject.Domain.CartItem.CartItem", b =>
+                {
+                    b.HasOne("MercuryProject.Domain.Product.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MercuryProject.Domain.ShoppingCart.ShoppingCart", "ShoppingCart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("ShoppingCart");
+                });
+
             modelBuilder.Entity("MercuryProject.Domain.Idea.Idea", b =>
                 {
                     b.HasOne("MercuryProject.Domain.User.User", "User")
@@ -170,9 +272,44 @@ namespace MercuryProject.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("MercuryProject.Domain.Order.Order", b =>
+                {
+                    b.HasOne("MercuryProject.Domain.ShoppingCart.ShoppingCart", "ShoppingCart")
+                        .WithMany()
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MercuryProject.Domain.User.User", null)
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("ShoppingCart");
+                });
+
+            modelBuilder.Entity("MercuryProject.Domain.ShoppingCart.ShoppingCart", b =>
+                {
+                    b.HasOne("MercuryProject.Domain.User.User", "Customer")
+                        .WithMany("ShoppingCarts")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("MercuryProject.Domain.ShoppingCart.ShoppingCart", b =>
+                {
+                    b.Navigation("CartItems");
+                });
+
             modelBuilder.Entity("MercuryProject.Domain.User.User", b =>
                 {
                     b.Navigation("Ideas");
+
+                    b.Navigation("Orders");
+
+                    b.Navigation("ShoppingCarts");
                 });
 #pragma warning restore 612, 618
         }
