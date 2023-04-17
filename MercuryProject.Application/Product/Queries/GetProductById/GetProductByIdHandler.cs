@@ -1,9 +1,8 @@
-﻿using MediatR;
-using MercuryProject.Application.Product.Common;
-using ErrorOr;
+﻿using ErrorOr;
+using MediatR;
 using MercuryProject.Application.Common.Interfaces.Persistence;
+using MercuryProject.Application.Product.Common;
 using MercuryProject.Domain.Common.Errors;
-using System;
 
 namespace MercuryProject.Application.Product.Queries.GetProductById
 {

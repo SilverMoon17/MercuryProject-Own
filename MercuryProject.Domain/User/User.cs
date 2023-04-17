@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MercuryProject.Domain.Common.Models;
+﻿using MercuryProject.Domain.Common.Models;
 using MercuryProject.Domain.User.ValueObjects;
 
 namespace MercuryProject.Domain.User
@@ -11,6 +6,8 @@ namespace MercuryProject.Domain.User
     public sealed class User : AggregateRoot<UserId>
     {
         private readonly List<Idea.Idea> _ideas = new();
+        private readonly List<ShoppingCart.ShoppingCart> _shoppingCarts = new();
+        private readonly List<Order.Order> _orders = new();
 
         public string Role { get; set; } = "User";
         public string Username { get; set; } = null!;
@@ -20,6 +17,8 @@ namespace MercuryProject.Domain.User
         public string Password { get; set; } = null!;
         public string ConfirmedPassword { get; set; } = null!;
         public IReadOnlyList<Idea.Idea> Ideas => _ideas.AsReadOnly();
+        public IReadOnlyList<ShoppingCart.ShoppingCart> ShoppingCarts => _shoppingCarts.AsReadOnly();
+        public IReadOnlyList<Order.Order> Orders => _orders.AsReadOnly();
         public DateTime CreatedDateTime { get; set; }
         public DateTime UpdatedDateTime { get; set; }
 
@@ -48,6 +47,6 @@ namespace MercuryProject.Domain.User
                 email: email, password: password, confirmedPassword: confirmedPassword,
                 createdDateTime: DateTime.UtcNow, updatedDateTime: DateTime.UtcNow);
         }
-        public User() {}
+        public User() { }
     }
 }

@@ -1,26 +1,18 @@
-﻿using System.Runtime.CompilerServices;
-using ErrorOr;
+﻿using ErrorOr;
 using MapsterMapper;
 using MediatR;
 using MercuryProject.Application.Common.Interfaces.Persistence;
-using MercuryProject.Application.Idea.Approve;
 using MercuryProject.Application.Idea.Commands.Approve;
-using MercuryProject.Application.Idea.Commands.Create;
 using MercuryProject.Application.Idea.Commands.Delete;
 using MercuryProject.Application.Idea.Commands.Donate;
 using MercuryProject.Application.Idea.Common;
 using MercuryProject.Application.Idea.Create;
-using MercuryProject.Application.Idea.Queries;
 using MercuryProject.Application.Idea.Queries.GetAllIdeas;
 using MercuryProject.Application.Idea.Queries.GetIdeaById;
-using MercuryProject.Application.Product.Commands.Delete;
-using MercuryProject.Application.Product.Queries.GetProductById;
 using MercuryProject.Contracts.Idea;
-using MercuryProject.Contracts.Product;
 using MercuryProject.Domain.Enums;
 using MercuryProject.Domain.Idea;
 using MercuryProject.Domain.Idea.Dto;
-using MercuryProject.Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

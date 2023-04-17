@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ErrorOr;
+﻿using ErrorOr;
 using MediatR;
 using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Domain.Common.Errors;
@@ -23,9 +18,9 @@ namespace MercuryProject.Application.Idea.Commands.Delete
         {
             await Task.CompletedTask;
 
-            if (Guid.TryParse(request.Id, out var productGuid))
+            if (Guid.TryParse(request.Id, out var ideaGuid))
             {
-                Domain.Idea.Idea idea = await _ideaRepository.GetIdeaById(productGuid);
+                Domain.Idea.Idea idea = await _ideaRepository.GetIdeaById(ideaGuid);
 
                 if (idea is null)
                 {

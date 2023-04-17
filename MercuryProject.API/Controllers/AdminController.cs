@@ -1,13 +1,8 @@
 ﻿using ErrorOr;
 using MapsterMapper;
 using MediatR;
-using MercuryProject.Application.Authentication.Commands.Register;
 using MercuryProject.Application.Common.Interfaces.Persistence;
-using MercuryProject.Application.Product.Commands.Create;
-using MercuryProject.Application.Product.Common;
 using MercuryProject.Contracts.Admin;
-using MercuryProject.Contracts.Authentication;
-using MercuryProject.Contracts.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,7 +28,7 @@ namespace MercuryProject.API.Controllers
         [HttpPatch]
         public async Task<IActionResult> AddAdmin(AddAdminRequest request)
         {
-            ErrorOr<bool> result= await _userRepository.AddAdminByUsername(request.Username);
+            ErrorOr<bool> result = await _userRepository.AddAdminByUsername(request.Username);
 
             return result.Match(result => Ok(),
                 errors => Problem(errors));

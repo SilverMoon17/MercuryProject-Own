@@ -5,7 +5,6 @@ using MercuryProject.Application.Common.Interfaces.Authentication;
 using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Application.Common.Interfaces.Services;
 using MercuryProject.Domain.Common.Errors;
-using MercuryProject.Domain.User;
 
 namespace MercuryProject.Application.Authentication.Queries.Login
 {

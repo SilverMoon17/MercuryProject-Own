@@ -1,11 +1,6 @@
 ﻿using MercuryProject.Domain.Enums;
-using MercuryProject.Domain.User.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MercuryProject.Domain.Idea.ValueObjects;
+using MercuryProject.Domain.User.ValueObjects;
 
 namespace MercuryProject.Domain.Idea.Dto
 {

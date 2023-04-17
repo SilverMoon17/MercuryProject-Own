@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ErrorOr;
+﻿using ErrorOr;
 using MercuryProject.Domain.User;
 using MercuryProject.Domain.User.ValueObjects;
 
@@ -13,11 +8,11 @@ namespace MercuryProject.Application.Common.Interfaces.Persistence
     {
         Task<User?> GetUserById(UserId id);
 
-        Task<User>?GetUserByEmail(string email);
-        Task<User>?GetUserByUsername(string username);
+        Task<User>? GetUserByEmail(string email);
+        Task<User>? GetUserByUsername(string username);
         Task<ErrorOr<bool>> AddAdminByUsername(string username);
         Task UpdateUser(string username);
-        public string GetUserId();
+        public UserId GetUserId();
         void Add(User user);
     }
 }

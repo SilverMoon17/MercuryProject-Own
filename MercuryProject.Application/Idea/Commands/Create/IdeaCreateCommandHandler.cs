@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ErrorOr;
 using MediatR;
-using ErrorOr;
 using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Application.Idea.Common;
 using MercuryProject.Application.Idea.Create;
 using MercuryProject.Domain.Common.Errors;
-using MercuryProject.Domain.User.ValueObjects;
-using MercuryProject.Domain.Idea;
 
 
 namespace MercuryProject.Application.Idea.Commands.Create
@@ -34,7 +27,7 @@ namespace MercuryProject.Application.Idea.Commands.Create
                 return Errors.Idea.DuplicateIdeaName;
             }
 
-            var userId = UserId.Create(Guid.Parse(_userRepository.GetUserId()));
+            var userId = _userRepository.GetUserId();
 
             var idea = Domain.Idea.Idea.Create(
                 userId,

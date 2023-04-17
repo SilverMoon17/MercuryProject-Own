@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MercuryProject.Application.Common.Interfaces.Persistence;
+﻿using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Domain.Product;
 using MercuryProject.Domain.Product.ValueObjects;
 using Microsoft.EntityFrameworkCore;
@@ -41,7 +36,7 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
 
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
