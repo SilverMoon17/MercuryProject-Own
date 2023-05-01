@@ -43,7 +43,7 @@ namespace MercuryProject.Application.Authentication.Commands.Register
             }
 
             // Create user (generate unique ID)
-            var user = User.Create(command.Username,
+            var user = Domain.User.User.Create(command.Username,
                 command.FirstName,
                 command.LastName,
                 command.Email,

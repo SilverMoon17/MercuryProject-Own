@@ -31,10 +31,10 @@ namespace MercuryProject.API.Controllers
                 errors => Problem(errors));
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteCartItem(CartItemIdRequest request)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCartItem(string id)
         {
-            var command = _mapper.Map<DeleteCartItemCommand>(request);
+            var command = new DeleteCartItemCommand(id);
             var result = await _mediator.Send(command);
 
             return result.Match(result => Ok(result),

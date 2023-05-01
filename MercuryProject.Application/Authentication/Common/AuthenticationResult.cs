@@ -4,7 +4,7 @@ namespace MercuryProject.Application.Authentication.Common
 {
     public record AuthenticationResult
     (
-        User User,
+        Domain.User.User User,
         string Token
     );
 }

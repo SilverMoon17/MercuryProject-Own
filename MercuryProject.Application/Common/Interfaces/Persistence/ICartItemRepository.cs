@@ -8,5 +8,7 @@ namespace MercuryProject.Application.Common.Interfaces.Persistence
         Task AddAsync(Domain.CartItem.CartItem cartItem);
         Task RemoveAsync(Domain.CartItem.CartItem cartItem);
 
+        Task UpdateAsync(Domain.CartItem.CartItem cartItem);
+
     }
 }

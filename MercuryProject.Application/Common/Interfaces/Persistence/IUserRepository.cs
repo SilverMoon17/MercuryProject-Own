@@ -6,13 +6,13 @@ namespace MercuryProject.Application.Common.Interfaces.Persistence
 {
     public interface IUserRepository
     {
-        Task<User?> GetUserById(UserId id);
+        Task<Domain.User.User?> GetUserById(UserId id);
 
-        Task<User>? GetUserByEmail(string email);
-        Task<User>? GetUserByUsername(string username);
+        Task<Domain.User.User>? GetUserByEmail(string email);
+        Task<Domain.User.User>? GetUserByUsername(string username);
         Task<ErrorOr<bool>> AddAdminByUsername(string username);
-        Task UpdateUser(string username);
+        Task UpdateUser(Domain.User.User user);
         public UserId GetUserId();
-        void Add(User user);
+        void Add(Domain.User.User user);
     }
 }

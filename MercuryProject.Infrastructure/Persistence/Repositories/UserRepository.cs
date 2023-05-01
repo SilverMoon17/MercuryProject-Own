@@ -42,8 +42,7 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
             if (user != null)
             {
                 user.Role = "Admin";
-                _dbContext.Update(user);
-                await UpdateUser(username);
+                await UpdateUser(user);
                 await _dbContext.SaveChangesAsync();
                 return true;
             }
@@ -51,10 +50,8 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
             return Errors.User.UserNotFoundError;
         }
 
-        public async Task UpdateUser(string username)
+        public async Task UpdateUser(User user)
         {
-            var user = await _dbContext.Set<User>().FirstOrDefaultAsync(u => u.Username == username);
-
             user.UpdatedDateTime = DateTime.UtcNow;
             _dbContext.Update(user);
             await _dbContext.SaveChangesAsync();
