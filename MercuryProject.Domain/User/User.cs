@@ -11,8 +11,8 @@ namespace MercuryProject.Domain.User
 
         public string Role { get; set; } = "User";
         public string Username { get; set; } = null!;
-        public string FirstName { get; set; } = null!;
-        public string LastName { get; set; } = null!;
+        public string Fullname { get; set; } = null!;
+        public string? Mobile { get; set; } 
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public string ConfirmedPassword { get; set; } = null!;
@@ -29,8 +29,7 @@ namespace MercuryProject.Domain.User
         , DateTime createdDateTime, DateTime updatedDateTime) : base(userId)
         {
             Username = username;
-            FirstName = firstName;
-            LastName = lastName;
+            Fullname = $"{firstName} {lastName}";
             Email = email;
             Password = password;
             ConfirmedPassword = confirmedPassword;

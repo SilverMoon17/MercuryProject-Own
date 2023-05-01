@@ -31,18 +31,31 @@ namespace MercuryProject.Application.CartItem.Commands.Create
             var userIdDb = _userRepository.GetUserId();
             var price = request.Quantity * product.Price;
             var shoppingCartDb = await _shoppingCartRepository.GetActiveShoppingCartAsync(userIdDb, price);
+            var cartItemFromDb = shoppingCartDb.CartItems.FirstOrDefault(ci => ci.ProductId == product.Id);
+            if (cartItemFromDb != null)
+            {
+                cartItemFromDb.Quantity += request.Quantity;
+                cartItemFromDb.Price = cartItemFromDb.Quantity * product.Price;
+                await _cartItemRepository.UpdateAsync(cartItemFromDb);
+            }
+            else
+            {
 
-            var cartItem = Domain.CartItem.CartItem.Create
-            (
-            request.Quantity,
-            price,
-            shoppingCartDb.Id,
-            product.Id
-            );
+                var cartItem = Domain.CartItem.CartItem.Create
+                (
+                    request.Quantity,
+                    price,
+                    shoppingCartDb.Id,
+                    product.Id
+                );
 
-            _cartItemRepository.AddAsync(cartItem);
+                _cartItemRepository.AddAsync(cartItem);
 
-            return new CartItemResult(cartItem);
+                cartItemFromDb = cartItem;
+            }
+            // элемент не найден
+            return new CartItemResult(cartItemFromDb);
+
         }
     }
 }

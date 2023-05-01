@@ -31,5 +31,11 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
             _dbContext.Remove(cartItem);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task UpdateAsync(CartItem cartItem)
+        {
+            _dbContext.Update(cartItem);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }
