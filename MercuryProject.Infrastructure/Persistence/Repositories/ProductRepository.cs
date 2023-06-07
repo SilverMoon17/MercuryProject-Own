@@ -1,4 +1,5 @@
-﻿using MercuryProject.Application.Common.Interfaces.Persistence;
+﻿using Azure.Core;
+using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Domain.Product;
 using MercuryProject.Domain.Product.ValueObjects;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +32,29 @@ namespace MercuryProject.Infrastructure.Persistence.Repositories
         {
             try
             {
-                _dbContext.Remove(product);
+                string projectPath = AppDomain.CurrentDomain.BaseDirectory;
+                        string solutionPath = projectPath;
+                        while (!Directory.GetFiles(solutionPath, "*.sln").Any())
+                        {
+                            solutionPath = Directory.GetParent(solutionPath)?.FullName;
+                            if (solutionPath == null)
+                            {
+                                break;
+                            }
+                        }
+
+                        string folderPath = Directory.GetParent(solutionPath).FullName;
+                        string targetFolderPath = "MercuryProject-frontend-Own\\src\\resources";
+                        string absolutePath = Path.Combine(folderPath, targetFolderPath);
+
+                        string uploadPath = Path.Combine(absolutePath, "productImages", product.Name);
+
+                        if (Directory.Exists(uploadPath))
+                        {
+                            Directory.Delete(uploadPath, true);
+                        }
+
+                        _dbContext.Remove(product);
                 await _dbContext.SaveChangesAsync();
 
                 return true;
