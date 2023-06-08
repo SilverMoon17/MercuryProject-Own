@@ -1,4 +1,5 @@
-﻿using ErrorOr;
+﻿using System.Text.RegularExpressions;
+using ErrorOr;
 using MediatR;
 using MercuryProject.Application.Common.Interfaces.Persistence;
 using MercuryProject.Application.Product.Common;
@@ -51,7 +52,9 @@ namespace MercuryProject.Application.Product.Commands.Create
                         string targetFolderPath = "MercuryProject-frontend-Own\\src\\resources";
                         string absolutePath = Path.Combine(folderPath, targetFolderPath);
 
-                        string uploadPath = Path.Combine(absolutePath, "productImages", request.Name);
+                        string saveFolderName = Path.Combine("productImages", Regex.Replace(request.Name, @"[^0-9a-zA-Z ]+", "").Replace(" ", "_"));
+
+                        string uploadPath = Path.Combine(absolutePath, saveFolderName);
 
                         // Путь для сохранения файла на диске
                         string filePath = Path.Combine(uploadPath, file.FileName);
@@ -67,7 +70,7 @@ namespace MercuryProject.Application.Product.Commands.Create
                             file.CopyTo(stream);
                         }
 
-                        pathsToImage.Add(file.FileName);
+                        pathsToImage.Add(Path.Combine(saveFolderName, file.FileName).Replace("\\", "/"));
                     }
                 }
             }
